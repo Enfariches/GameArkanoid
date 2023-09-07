@@ -4,9 +4,9 @@
 class Blocks : public GameWindow
 {
 public:
-    Blocks(unsigned p_x, unsigned p_y, unsigned p_width, unsigned p_height)
+    Blocks(unsigned pre_x, unsigned p_y, unsigned p_width, unsigned p_height)
     {
-        x = p_x;
+        x = pre_x;
         y = p_y;
         widthBlock = p_width;
         heightBlock = p_height;
