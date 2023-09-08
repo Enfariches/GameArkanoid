@@ -18,11 +18,13 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
     gamewindow.cpp \
     main.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    moveitem.cpp
 
 HEADERS += \
     gamewindow.h \
-    mainwindow.h
+    mainwindow.h \
+    moveitem.h
 
 FORMS += \
     gamewindow.ui \

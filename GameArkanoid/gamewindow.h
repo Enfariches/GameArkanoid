@@ -2,7 +2,10 @@
 #define GAMEWINDOW_H
 
 #include <QDialog>
-#include <QPainter>
+#include <QGraphicsScene>
+#include <QGraphicsSceneMouseEvent>
+#include <QGraphicsRectItem>
+#include "moveitem.h"
 
 namespace Ui {
 class GameWindow;
@@ -18,9 +21,7 @@ public:
 
 private:
     Ui::GameWindow *ui;
-
-protected:
-    void paintEvent(QPaintEvent *pt) override;
+    QGraphicsScene *scene;
 };
 
 #endif // GAMEWINDOW_H
