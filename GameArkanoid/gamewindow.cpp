@@ -12,15 +12,21 @@ GameWindow::GameWindow(QWidget *parent) :
     scene->setSceneRect(0,0,width(),height());
 
     MoveItem *staredPlatform = new MoveItem();
-    staredPlatform->setPos(width() / 2,height() - 50);
+    staredPlatform->setPos(width() / 2, height() - 50);
     scene->addItem(staredPlatform);
-    QPen pen(Qt::black);
-    pen.setWidth(10);
-    scene->addLine(100,0,100,100,pen);
+
+    Ball *ball = new Ball();
+    ball->setPos((width() / 2), 400);
+    scene->addItem(ball);
+
 
     ui->graphicsView->setScene(scene);
+    ui->graphicsView->horizontalScrollBar()->blockSignals(true);
     ui->graphicsView->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    ui->graphicsView->verticalScrollBar()->blockSignals(true);
     ui->graphicsView->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+
+    ui->graphicsView->setFixedSize(800,600);
 
 }
 

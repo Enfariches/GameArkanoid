@@ -5,7 +5,9 @@
 #include <QGraphicsScene>
 #include <QGraphicsSceneMouseEvent>
 #include <QGraphicsRectItem>
+#include <QScrollBar>
 #include "moveitem.h"
+#include "ball.h"
 
 namespace Ui {
 class GameWindow;
