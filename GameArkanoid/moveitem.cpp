@@ -31,8 +31,9 @@ void MoveItem::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
 
     if(pos().x() < 0)
         setPos(100,pos().y());
-    else if(pos().x() > 800)
+    else if(pos().x() > 782)
         setPos(700,pos().y());
+
 
 }
 

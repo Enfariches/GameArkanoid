@@ -6,6 +6,7 @@
 #include <QGraphicsSceneMouseEvent>
 #include <QGraphicsRectItem>
 #include <QScrollBar>
+#include <QDebug>
 #include "moveitem.h"
 #include "ball.h"
 

@@ -8,17 +8,19 @@ GameWindow::GameWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    scene = new QGraphicsScene(this);
-    scene->setSceneRect(0,0,width(),height());
+    scene = new QGraphicsScene(0,0,782,582,this);
+    QPen *pen = new QPen();
+    pen->setWidth(5);
+    scene->addRect(0,0,782,582,*pen);
 
     MoveItem *staredPlatform = new MoveItem();
     staredPlatform->setPos(width() / 2, height() - 50);
     scene->addItem(staredPlatform);
 
     Ball *ball = new Ball();
-    ball->setPos((width() / 2), 400);
+    ball->setPos(782/2,400);
     scene->addItem(ball);
-
+    ball->startTimer(1000/60);
 
     ui->graphicsView->setScene(scene);
     ui->graphicsView->horizontalScrollBar()->blockSignals(true);
