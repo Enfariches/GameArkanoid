@@ -33,20 +33,28 @@ void Ball::timerEvent(QTimerEvent *event)
 
 void Ball::advance(int phase)
 {
-    if(phase)
-    {
         if(pos().y() > 300)
         {
             this->moveBy(-1,-1);
             this->scene()->update();
         }
 
+        else if(pos().x() >= 600)
+        {
+            this->moveBy(1,1);
+            this->scene()->update();
+        }
 
         else if(pos().y() <= 300)
         {
             this->moveBy(1,-1);
             this->scene()->update();
         }
-    }
+
+        else if(pos().x() < 600)
+        {
+            this->moveBy(-1,1);
+            this->scene()->update();
+        }
 }
 

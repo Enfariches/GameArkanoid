@@ -17,6 +17,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
     ball.cpp \
+    blocks.cpp \
     gamewindow.cpp \
     main.cpp \
     mainwindow.cpp \
@@ -24,6 +25,7 @@ SOURCES += \
 
 HEADERS += \
     ball.h \
+    blocks.h \
     gamewindow.h \
     mainwindow.h \
     moveitem.h

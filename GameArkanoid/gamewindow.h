@@ -9,6 +9,7 @@
 #include <QDebug>
 #include "moveitem.h"
 #include "ball.h"
+#include "blocks.h"
 
 namespace Ui {
 class GameWindow;

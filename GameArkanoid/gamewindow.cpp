@@ -13,14 +13,17 @@ GameWindow::GameWindow(QWidget *parent) :
     pen->setWidth(5);
     scene->addRect(0,0,782,582,*pen);
 
-    MoveItem *staredPlatform = new MoveItem();
+    MoveItem *staredPlatform = new MoveItem(); // Платформа
     staredPlatform->setPos(width() / 2, height() - 50);
     scene->addItem(staredPlatform);
 
-    Ball *ball = new Ball();
+    Ball *ball = new Ball(); // Мячик
     ball->setPos(782/2,400);
     scene->addItem(ball);
     ball->startTimer(1000/60);
+
+    Blocks *blocks = new Blocks(0,0);
+    blocks->startTimer(1000);
 
     ui->graphicsView->setScene(scene);
     ui->graphicsView->horizontalScrollBar()->blockSignals(true);

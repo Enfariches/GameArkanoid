@@ -20,7 +20,10 @@ public:
 
 private:
     QRectF boundingRect() const override;
-    void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget = nullptr) override;;
+    void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget = nullptr) override;
+
+signals:
+    void signalCheckItem(QGraphicsItem *item);
 
 protected:
     void timerEvent(QTimerEvent *event) override;
