@@ -25,6 +25,18 @@ void Ball::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWid
     Q_UNUSED(widget);
 }
 
+void Ball::slotGameTimer()
+{
+    QList<QGraphicsItem *> foundItems = scene()->items(QPolygonF() << mapToScene(-1,1) << mapToScene(1,1) << mapToScene(1,-1) << mapToScene(-1,-1));
+
+    for(auto& item: foundItems)
+    {
+        if (item == this)
+            continue;
+        emit signalCheckItem(item);
+    }
+}
+
 void Ball::timerEvent(QTimerEvent *event)
 {
     scene()->advance();
@@ -33,25 +45,13 @@ void Ball::timerEvent(QTimerEvent *event)
 
 void Ball::advance(int phase)
 {
-        if(pos().y() > 300)
-        {
-            this->moveBy(-1,-1);
-        }
+    if(pos().y() > 300)
+        this->moveBy(-1,-1);
 
-        else if(pos().x() >= 600)
-        {
-            this->moveBy(1,1);
-        }
+    else if(pos().y() <= 300)
+        this->moveBy(1,-1);
 
-        else if(pos().y() <= 300)
-        {
-            this->moveBy(1,-1);
-        }
-
-        else if(pos().x() < 600)
-        {
-            this->moveBy(-1,1);
-        }
-        scene()->update();
+    scene()->update();
+    Q_UNUSED(phase);
 }
 

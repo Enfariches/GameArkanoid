@@ -24,6 +24,8 @@ private:
 
 signals:
     void signalCheckItem(QGraphicsItem *item);
+public slots:
+    void slotGameTimer();
 
 protected:
     void timerEvent(QTimerEvent *event) override;

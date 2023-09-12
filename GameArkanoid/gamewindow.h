@@ -27,11 +27,13 @@ public:
 
 private slots:
     void slotGenerate();
+    void slotDelete(QGraphicsItem *item);
 
 private:
     Ui::GameWindow *ui;
     QGraphicsScene *scene;
     QTimer *GenerateTimer;
+    QTimer *GameTimer;
     QList<QGraphicsItem*> listBlocks;
 };
 #endif // GAMEWINDOW_H

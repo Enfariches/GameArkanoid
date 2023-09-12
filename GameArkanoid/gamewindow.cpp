@@ -29,6 +29,12 @@ GameWindow::GameWindow(QWidget *parent) :
     connect(GenerateTimer, &QTimer::timeout, this, &GameWindow::slotGenerate);
     GenerateTimer->start(100);
 
+    GameTimer = new QTimer(); //Чек на попадаение
+    connect(GameTimer, &QTimer::timeout, ball, &Ball::slotGameTimer);
+    GameTimer->start(1000/100);
+
+    connect(ball, &Ball::signalCheckItem, this, &GameWindow::slotDelete); // Связка если шар попал в блок
+
     ui->graphicsView->setScene(scene);
     ui->graphicsView->horizontalScrollBar()->blockSignals(true);
     ui->graphicsView->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
@@ -56,5 +62,18 @@ void GameWindow::slotGenerate()
     xspread += 77;
     if(xspread == 780)
         GenerateTimer->stop();
+}
+
+void GameWindow::slotDelete(QGraphicsItem *item)
+{
+    for (auto& block : listBlocks)
+    {
+        if(item == block)
+        {
+            scene->removeItem(block);
+            listBlocks.removeOne(block);
+            delete block;
+        }
+    }
 }
 
