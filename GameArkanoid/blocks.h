@@ -13,13 +13,12 @@ class Blocks : public QObject, public QGraphicsItem
 {
     Q_OBJECT
 public:
-     Blocks(QObject *parent = 0, int xspread = 0);
+     Blocks(QObject *parent = 0);
     ~Blocks(){};
 
 protected:
     QRectF boundingRect() const override;
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) override;
-    void timerEvent(QTimerEvent *event) override;
 
 private:
     const QColor color = QColor(rand() % 255, rand() % 255, rand() % 255);

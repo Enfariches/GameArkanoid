@@ -8,22 +8,26 @@ GameWindow::GameWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    scene = new QGraphicsScene(0,0,782,582,this);
-    QPen *pen = new QPen();
+    scene = new QGraphicsScene(0,0,790,590,this);
+    int myWidth = 790;
+    int myHeight = 590;
+
+    QPen *pen = new QPen(); //Рамка
     pen->setWidth(5);
-    scene->addRect(0,0,782,582,*pen);
+    scene->addRect(0,0,myWidth,myHeight,*pen);
 
     MoveItem *staredPlatform = new MoveItem(); // Платформа
-    staredPlatform->setPos(width() / 2, height() - 50);
+    staredPlatform->setPos(390, myHeight - 50);
     scene->addItem(staredPlatform);
 
     Ball *ball = new Ball(); // Мячик
-    ball->setPos(782/2,400);
+    ball->setPos(380, myHeight - 70);
     scene->addItem(ball);
     ball->startTimer(1000/60);
 
-    Blocks *blocks = new Blocks(0,0);
-    blocks->startTimer(1000);
+    GenerateTimer = new QTimer(); // Создание блоков
+    connect(GenerateTimer, &QTimer::timeout, this, &GameWindow::slotGenerate);
+    GenerateTimer->start(100);
 
     ui->graphicsView->setScene(scene);
     ui->graphicsView->horizontalScrollBar()->blockSignals(true);
@@ -38,5 +42,19 @@ GameWindow::GameWindow(QWidget *parent) :
 GameWindow::~GameWindow()
 {
     delete ui;
+}
+
+void GameWindow::slotGenerate()
+{
+
+    static int xspread = 10;
+    Blocks *block = new Blocks();
+    scene->addItem(block);
+    block->setPos(xspread,5); //10 - 780
+
+    listBlocks.push_back(block);
+    xspread += 77;
+    if(xspread == 780)
+        GenerateTimer->stop();
 }
 

@@ -7,6 +7,8 @@
 #include <QGraphicsRectItem>
 #include <QScrollBar>
 #include <QDebug>
+#include <QTimer>
+#include <QList>
 #include "moveitem.h"
 #include "ball.h"
 #include "blocks.h"
@@ -23,9 +25,13 @@ public:
     explicit GameWindow(QWidget *parent = nullptr);
     ~GameWindow();
 
+private slots:
+    void slotGenerate();
+
 private:
     Ui::GameWindow *ui;
     QGraphicsScene *scene;
+    QTimer *GenerateTimer;
+    QList<QGraphicsItem*> listBlocks;
 };
-
 #endif // GAMEWINDOW_H
