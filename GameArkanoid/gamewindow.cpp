@@ -31,7 +31,7 @@ GameWindow::GameWindow(QWidget *parent) :
 
     GameTimer = new QTimer(); //Чек на попадаение
     connect(GameTimer, &QTimer::timeout, ball, &Ball::slotGameTimer);
-    GameTimer->start(1000/100);
+    GameTimer->start(1000/60);
 
     connect(ball, &Ball::signalCheckItem, this, &GameWindow::slotDelete); // Связка если шар попал в блок
 
@@ -60,7 +60,7 @@ void GameWindow::slotGenerate()
 
     listBlocks.push_back(block);
     xspread += 77;
-    if(xspread == 780)
+    if(xspread >= 780)
         GenerateTimer->stop();
 }
 
@@ -72,7 +72,7 @@ void GameWindow::slotDelete(QGraphicsItem *item)
         {
             scene->removeItem(block);
             listBlocks.removeOne(block);
-            delete block;
+            delete item;
         }
     }
 }

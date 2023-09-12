@@ -19,6 +19,7 @@ void Ball::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWid
 {
     painter->setPen(Qt::black);
     painter->setBrush(Qt::red);
+    painter->drawRect(0,0,20,20);
     painter->drawEllipse(0,0,20,20);
 
     Q_UNUSED(option);
@@ -27,8 +28,8 @@ void Ball::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWid
 
 void Ball::slotGameTimer()
 {
-    QList<QGraphicsItem *> foundItems = scene()->items(QPolygonF() << mapToScene(-1,1) << mapToScene(1,1) << mapToScene(1,-1) << mapToScene(-1,-1));
-
+    QList<QGraphicsItem *> foundItems = scene()->items(this->scenePos());
+    //qDebug() << foundItems;
     for(auto& item: foundItems)
     {
         if (item == this)
