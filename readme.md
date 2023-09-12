@@ -1,2 +1,3 @@
 # Arkanoid Game
-Stack: Qt, C++
+Stack: Qt, C++ <br>
+Build: QMake
