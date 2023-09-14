@@ -4,11 +4,11 @@
 #include <QDialog>
 #include <QGraphicsScene>
 #include <QGraphicsSceneMouseEvent>
-#include <QGraphicsRectItem>
+#include <QGraphicsLineItem>
 #include <QScrollBar>
-#include <QDebug>
 #include <QTimer>
 #include <QList>
+#include <QDebug>
 #include "moveitem.h"
 #include "ball.h"
 #include "blocks.h"

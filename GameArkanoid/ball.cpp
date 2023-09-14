@@ -3,7 +3,7 @@
 Ball::Ball(QObject *parent) :
     QObject(parent), QGraphicsItem()
 {
-
+    path = QPointF(1, -1);
 }
 
 Ball::~Ball()
@@ -19,7 +19,6 @@ void Ball::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWid
 {
     painter->setPen(Qt::black);
     painter->setBrush(Qt::red);
-    painter->drawRect(0,0,20,20);
     painter->drawEllipse(0,0,20,20);
 
     Q_UNUSED(option);
@@ -29,7 +28,6 @@ void Ball::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWid
 void Ball::slotGameTimer()
 {
     QList<QGraphicsItem *> foundItems = scene()->items(this->scenePos());
-    //qDebug() << foundItems;
     for(auto& item: foundItems)
     {
         if (item == this)
@@ -46,13 +44,21 @@ void Ball::timerEvent(QTimerEvent *event)
 
 void Ball::advance(int phase)
 {
-    if(pos().y() > 300)
-        this->moveBy(-1,-1);
+    QRectF sceneRect = scene()->sceneRect();
 
-    else if(pos().y() <= 300)
-        this->moveBy(1,-1);
+    if(pos().x() < sceneRect.left() || pos().x() + boundingRect().width() > sceneRect.right())
+    {
+        path.setX(-path.x());
+    }
 
-    scene()->update();
+    if(pos().y() < sceneRect.top() || pos().y() + boundingRect().width() > sceneRect.bottom())
+    {
+        path.setY(-path.y());
+    }
+
+    moveBy(path.x(), path.y());
     Q_UNUSED(phase);
 }
+
+
 

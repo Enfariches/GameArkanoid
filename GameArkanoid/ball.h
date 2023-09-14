@@ -21,6 +21,7 @@ public:
 private:
     QRectF boundingRect() const override;
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget = nullptr) override;
+    QPointF path;
 
 signals:
     void signalCheckItem(QGraphicsItem *item);

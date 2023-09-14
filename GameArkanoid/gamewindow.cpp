@@ -11,19 +11,22 @@ GameWindow::GameWindow(QWidget *parent) :
     scene = new QGraphicsScene(0,0,790,590,this);
     int myWidth = 790;
     int myHeight = 590;
-
-    QPen *pen = new QPen(); //Рамка
+    QPen* pen = new QPen();
     pen->setWidth(5);
-    scene->addRect(0,0,myWidth,myHeight,*pen);
+
+    scene->addLine(0,0,myWidth,0,*pen);
+    scene->addLine(myWidth,0,myWidth,myHeight,*pen);
+    scene->addLine(myWidth,myHeight,0,myHeight,*pen);
+    scene->addLine(0,myHeight,0,0,*pen);
 
     MoveItem *staredPlatform = new MoveItem(); // Платформа
     staredPlatform->setPos(390, myHeight - 50);
     scene->addItem(staredPlatform);
 
     Ball *ball = new Ball(); // Мячик
-    ball->setPos(380, myHeight - 70);
+    ball->setPos(390, myHeight - 70);
     scene->addItem(ball);
-    ball->startTimer(1000/60);
+    ball->startTimer(1000/120);
 
     GenerateTimer = new QTimer(); // Создание блоков
     connect(GenerateTimer, &QTimer::timeout, this, &GameWindow::slotGenerate);
