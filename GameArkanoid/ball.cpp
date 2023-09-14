@@ -3,7 +3,7 @@
 Ball::Ball(QObject *parent) :
     QObject(parent), QGraphicsItem()
 {
-    path = QPointF(1, -1);
+    path = QPointF(-1, -1);
 }
 
 Ball::~Ball()
@@ -27,11 +27,20 @@ void Ball::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWid
 
 void Ball::slotGameTimer()
 {
-    QList<QGraphicsItem *> foundItems = scene()->items(this->scenePos());
+    QList<QGraphicsItem *> foundItems = scene()->items(mapToScene(this->boundingRect()));
     for(auto& item: foundItems)
     {
-        if (item == this)
+        if (item == this || item->boundingRect().width() == 150)
             continue;
+
+        QRectF rectItem = item->boundingRect();
+
+        if(pos().x() < rectItem.left() || pos().x() + boundingRect().width() > rectItem.right())
+            path.setX(-path.x());
+
+        if(pos().y() < rectItem.top() || pos().y() + boundingRect().width() > rectItem.bottom())
+            path.setY(-path.y());
+
         emit signalCheckItem(item);
     }
 }
@@ -39,6 +48,7 @@ void Ball::slotGameTimer()
 void Ball::timerEvent(QTimerEvent *event)
 {
     scene()->advance();
+
     Q_UNUSED(event);
 }
 
@@ -47,18 +57,24 @@ void Ball::advance(int phase)
     QRectF sceneRect = scene()->sceneRect();
 
     if(pos().x() < sceneRect.left() || pos().x() + boundingRect().width() > sceneRect.right())
-    {
         path.setX(-path.x());
-    }
 
     if(pos().y() < sceneRect.top() || pos().y() + boundingRect().width() > sceneRect.bottom())
-    {
         path.setY(-path.y());
-    }
 
+    QList<QGraphicsItem*> items = this->collidingItems();
+    for(auto& item : items)
+    {
+        if(item->boundingRect().width() == 150)
+        {
+            //Платформа
+        }
+    }
     moveBy(path.x(), path.y());
+
     Q_UNUSED(phase);
 }
+
 
 
 

@@ -8,6 +8,7 @@
 #include <QGraphicsSceneMouseEvent>
 #include <QDebug>
 #include <QCursor>
+#include <QGraphicsScene>
 
 class MoveItem : public QObject, public QGraphicsItem
 {
@@ -21,7 +22,7 @@ private:
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
     void mouseMoveEvent(QGraphicsSceneMouseEvent *event);
     void mousePressEvent(QGraphicsSceneMouseEvent *event);
-
+    QPointF offset;
 };
 
 #endif // MOVEITEM_H

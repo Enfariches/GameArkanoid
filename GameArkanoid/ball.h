@@ -9,6 +9,8 @@
 #include <QDebug>
 #include <QGraphicsScene>
 #include <QThread>
+#include <moveitem.h>
+#include <math.h>
 
 
 class Ball : public QObject, public QGraphicsItem

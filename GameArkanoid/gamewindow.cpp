@@ -11,13 +11,6 @@ GameWindow::GameWindow(QWidget *parent) :
     scene = new QGraphicsScene(0,0,790,590,this);
     int myWidth = 790;
     int myHeight = 590;
-    QPen* pen = new QPen();
-    pen->setWidth(5);
-
-    scene->addLine(0,0,myWidth,0,*pen);
-    scene->addLine(myWidth,0,myWidth,myHeight,*pen);
-    scene->addLine(myWidth,myHeight,0,myHeight,*pen);
-    scene->addLine(0,myHeight,0,0,*pen);
 
     MoveItem *staredPlatform = new MoveItem(); // Платформа
     staredPlatform->setPos(390, myHeight - 50);
@@ -34,7 +27,7 @@ GameWindow::GameWindow(QWidget *parent) :
 
     GameTimer = new QTimer(); //Чек на попадаение
     connect(GameTimer, &QTimer::timeout, ball, &Ball::slotGameTimer);
-    GameTimer->start(1000/60);
+    GameTimer->start(1000/120);
 
     connect(ball, &Ball::signalCheckItem, this, &GameWindow::slotDelete); // Связка если шар попал в блок
 
