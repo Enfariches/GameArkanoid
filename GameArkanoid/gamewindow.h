@@ -9,6 +9,9 @@
 #include <QTimer>
 #include <QList>
 #include <QDebug>
+#include <QMessageBox>
+#include <QApplication>
+#include <QProcess>
 #include "moveitem.h"
 #include "ball.h"
 #include "blocks.h"
@@ -28,6 +31,7 @@ public:
 private slots:
     void slotGenerate();
     void slotDelete(QGraphicsItem *item);
+    void slotCloseApp();
 
 private:
     Ui::GameWindow *ui;

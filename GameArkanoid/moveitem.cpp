@@ -11,6 +11,7 @@ MoveItem::~MoveItem()
 
 }
 
+
 QRectF MoveItem::boundingRect() const
 {
     return QRectF (0,0,150,20);
@@ -28,6 +29,7 @@ void MoveItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, 
 
 void MoveItem::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
 {
+
     QPointF newPos = event->pos();
     QPointF delta = newPos - offset;
 

@@ -9,6 +9,7 @@
 #include <QDebug>
 #include <QCursor>
 #include <QGraphicsScene>
+#include <QtMath>
 
 class MoveItem : public QObject, public QGraphicsItem
 {

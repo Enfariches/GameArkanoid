@@ -9,6 +9,8 @@
 #include <QDebug>
 #include <QGraphicsScene>
 #include <QThread>
+#include <QMessageBox>
+#include <gamewindow.h>
 #include <moveitem.h>
 #include <math.h>
 
@@ -27,6 +29,8 @@ private:
 
 signals:
     void signalCheckItem(QGraphicsItem *item);
+    void signalCloseGame();
+
 public slots:
     void slotGameTimer();
 
