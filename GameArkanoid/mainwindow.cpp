@@ -7,6 +7,14 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    QPixmap bkgnd(":/resources/img/arkanoid.jpg");
+    bkgnd = bkgnd.scaled(this->size(), Qt::IgnoreAspectRatio);
+    QPalette palette;
+    palette.setBrush(QPalette::Window, bkgnd);
+    this->setPalette(palette);
+
+    ui->startButton->setStyleSheet("color: black");
+    ui->exitButton->setStyleSheet("color: black");
     QWidget::setFixedSize(width(),height());
 }
 
