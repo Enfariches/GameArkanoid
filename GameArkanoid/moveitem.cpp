@@ -29,7 +29,6 @@ void MoveItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, 
 
 void MoveItem::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
 {
-
     QPointF newPos = event->pos();
     QPointF delta = newPos - offset;
 
@@ -37,6 +36,7 @@ void MoveItem::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
 
     if(this->pos().x() < -75)
         setPos(0,pos().y());
+
     else if(pos().x() > 715)
         setPos(640,pos().y());
 

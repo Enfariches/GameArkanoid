@@ -3,16 +3,10 @@
 
 #include <QGraphicsItem>
 #include <QTimerEvent>
-#include <QShowEvent>
 #include <QPainter>
 #include <QObject>
-#include <QDebug>
 #include <QGraphicsScene>
-#include <QThread>
-#include <QMessageBox>
 #include <gamewindow.h>
-#include <moveitem.h>
-#include <math.h>
 
 
 class Ball : public QObject, public QGraphicsItem

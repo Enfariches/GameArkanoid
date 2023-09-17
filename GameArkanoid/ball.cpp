@@ -19,7 +19,6 @@ void Ball::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWid
 {
     painter->setPen(Qt::black);
     painter->setBrush(Qt::red);
-    painter->drawRect(0,0,20,20);
     painter->drawEllipse(0,0,20,20);
 
     Q_UNUSED(option);
@@ -31,20 +30,10 @@ void Ball::slotGameTimer()
     QList<QGraphicsItem *> foundItems = scene()->items(mapToScene(this->boundingRect()));
     for(auto& item: foundItems)
     {
-        if (item == this)
+        if (item == this || item->boundingRect().width() == 150)
             continue;
-        else if(item->boundingRect().width() == 150)
-        {
-            QRectF rectItem = item->boundingRect();
-
-            if (pos().y() < rectItem.top() || pos().y() + boundingRect().width() > rectItem.bottom()) {
-                path.setY(-path.y());
-            }
-            continue;
-        }
 
         QRectF rectItem = item->boundingRect();
-
         if(pos().x() < rectItem.left() || pos().x() + boundingRect().width() > rectItem.right())
             path.setX(-path.x());
 
@@ -58,10 +47,12 @@ void Ball::slotGameTimer()
 void Ball::timerEvent(QTimerEvent *event)
 {
     scene()->advance();
-    if(this->scenePos().y() > 550){
-        this->killTimer(event->timerId());
-        emit(signalCloseGame());
+    if(this->scenePos().y() > 550)
+    {
+       this->killTimer(event->timerId());
+       emit(signalCloseGame());
     }
+
     Q_UNUSED(event);
 }
 
@@ -74,6 +65,19 @@ void Ball::advance(int phase)
 
     if(pos().y() < sceneRect.top() || pos().y() + boundingRect().height() > sceneRect.bottom())
         path.setY(-path.y());
+
+    QList<QGraphicsItem*> items = this->collidingItems();
+    for(auto& item : items)
+    {
+        if(item->boundingRect().width() == 150)
+        {
+            QRectF rectItem = item->boundingRect();
+            if (pos().y() < rectItem.top() || pos().y() + boundingRect().width() > rectItem.bottom()) {
+                path.setY(-path.y());
+            }
+        }
+
+    }
 
     moveBy(path.x(), path.y());
 

@@ -3,12 +3,9 @@
 
 #include <QDialog>
 #include <QGraphicsScene>
-#include <QGraphicsSceneMouseEvent>
-#include <QGraphicsLineItem>
 #include <QScrollBar>
 #include <QTimer>
 #include <QList>
-#include <QDebug>
 #include <QMessageBox>
 #include <QApplication>
 #include <QProcess>

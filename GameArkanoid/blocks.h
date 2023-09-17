@@ -4,10 +4,7 @@
 #include <QObject>
 #include <QGraphicsItem>
 #include <QPainter>
-#include <QGraphicsScene>
 #include <QColor>
-#include <QTimerEvent>
-#include <QDebug>
 
 class Blocks : public QObject, public QGraphicsItem
 {
