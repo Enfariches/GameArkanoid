@@ -2,5 +2,6 @@
     <qresource prefix="/resources">
         <file>img/arkanoid.jpg</file>
         <file>img/bck2.jpg</file>
+        <file>img/bck3_b.png</file>
     </qresource>
 </RCC>
